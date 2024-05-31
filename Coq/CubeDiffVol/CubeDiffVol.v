@@ -126,12 +126,8 @@ Proof.
   assert (0 < Rpower 19 (/ 3)) by (unfold Rpower; apply exp_pos).
   assert (0 < /3) by lra.
   rewrite (Rpower_mult_distr ((Rpower 19 (/ 3))) (/ 3) 3 H0 H1). clear H1.
-  (*
-    h^3 * (19^(1/3)*(1/3))^3 = cube_vol (h * 19^(1/3)/3)
-  *)
-
   assert (0 < Rpower 19 (/ 3) * / 3) by lra. clear H0.
-  rewrite (Rpower_mult_distr h (Rpower 19 (/ 3) * / 3) 3 H H1). clear H H1.
+  rewrite (Rpower_mult_distr h (Rpower 19 (/ 3) * / 3) 3 H H1). clear H1.
   rewrite <- Rmult_assoc.
   rewrite <- Rmult_inv by lra.
   (*
