@@ -92,7 +92,7 @@ Proof.
   *)
 
   assert (0 < 2/3) by lra.
-  rewrite <- (Rpower_mult_distr h (2 / 3) 3 H H0).
+  rewrite <- (Rpower_mult_distr h (2 / 3) 3 H H0). clear H0.
   rewrite <- (Rmult_1_r (Rpower h 3)) at 1.
   rewrite <- Rmult_minus_distr_l.
 
@@ -100,33 +100,33 @@ Proof.
   - rewrite (Rmult_inv 2 3) by lra.
     assert (0 < 2) by lra.
     assert (0 < /3) by lra.
-    rewrite <- (Rpower_mult_distr 2 (/3) 3 H1 H2).
+    rewrite <- (Rpower_mult_distr 2 (/3) 3 H0 H1). clear H0 H1.
     rewrite (Rpower_Ropp_corollary_2 3 3) by lra.
     assert (Rpower 3 3 <> 0) by (rewrite Rpower_3_3; lra).
-    rewrite <- (Rinv_r (Rpower 3 3) H3).
+    rewrite <- (Rinv_r (Rpower 3 3) H0).
     rewrite <- (Rmult_minus_distr_r (/ Rpower 3 3) (Rpower 3 3) (Rpower 2 3)).
     rewrite Rmult_inv by lra.
     f_equal.
     rewrite Rpower_2_3.
     rewrite Rpower_3_3.
     lra.
-  - rewrite H1.
+  - rewrite H0. clear H0.
     assert (0 < 19) by lra.
     assert (/3 <> 0) by lra.
-    rewrite <- (Rpower_recip_inv 19 (/3) H2 H3) at 1.
+    rewrite <- (Rpower_recip_inv 19 (/3) H0 H1) at 1. clear H0 H1.
     replace (1 / / 3) with 3 by lra.
     assert (Rpower 3 3 <> 0).
     + rewrite Rpower_3_3.
       lra.
-    + rewrite (Rmult_inv (Rpower (Rpower 19 (/ 3)) 3) (Rpower 3 3) H4).
+    + rewrite (Rmult_inv (Rpower (Rpower 19 (/ 3)) 3) (Rpower 3 3) H0). clear H0.
       rewrite <- Rpower_Ropp_corollary_2 by lra.
       assert (0 < Rpower 19 (/ 3)).
       * unfold Rpower.
         apply exp_pos.
       * assert (0 < /3) by lra.
-        rewrite (Rpower_mult_distr ((Rpower 19 (/ 3))) (/ 3) 3 H5 H6).
-        assert (0 < Rpower 19 (/ 3) * / 3) by lra.
-        rewrite (Rpower_mult_distr h (Rpower 19 (/ 3) * / 3) 3 H H7).
+        rewrite (Rpower_mult_distr ((Rpower 19 (/ 3))) (/ 3) 3 H0 H1). clear H1.
+        assert (0 < Rpower 19 (/ 3) * / 3) by lra. clear H0.
+        rewrite (Rpower_mult_distr h (Rpower 19 (/ 3) * / 3) 3 H H1). clear H H1.
         rewrite <- Rmult_assoc.
         rewrite <- Rmult_inv by lra.
         fold (cube_vol (h * Rpower 19 (/ 3) / 3)).
