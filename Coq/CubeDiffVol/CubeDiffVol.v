@@ -93,11 +93,11 @@ Proof.
 
   replace (1 - Rpower (2 / 3) 3) with (19/(Rpower 3 3)) by (
     rewrite (Rmult_inv 2 3) by lra;
-    rewrite <- (Rpower_mult_distr 2 (/3) 3) by lra;
-    rewrite (Rpower_Ropp_corollary_2 3 3) by lra;
+    rewrite <- Rpower_mult_distr with (x := 2) (y := /3) (z := 3) by lra;
+    rewrite Rpower_Ropp_corollary_2 with (x := 3) (y := 3) by lra;
     assert (Rpower 3 3 <> 0) by (rewrite Rpower_3_3; lra);
     rewrite <- (Rinv_r (Rpower 3 3)) by lra;
-    rewrite <- (Rmult_minus_distr_r (/ Rpower 3 3) (Rpower 3 3) (Rpower 2 3));
+    rewrite <- Rmult_minus_distr_r with (r1 := / Rpower 3 3) (r2 := Rpower 3 3) (r3 := Rpower 2 3);
     rewrite Rmult_inv by lra;
     f_equal;
     rewrite Rpower_2_3;
@@ -118,8 +118,8 @@ Proof.
   rewrite (Rmult_inv (Rpower (Rpower 19 (/ 3)) 3) (Rpower 3 3)) by lra.
   rewrite <- Rpower_Ropp_corollary_2 by lra.
   assert (0 < Rpower 19 (/ 3)) by (unfold Rpower; apply exp_pos).
-  rewrite (Rpower_mult_distr ((Rpower 19 (/ 3))) (/ 3) 3) by lra.
-  rewrite (Rpower_mult_distr h (Rpower 19 (/ 3) * / 3) 3) by lra.
+  rewrite Rpower_mult_distr with (x := (Rpower 19 (/ 3))) (y := / 3) (z := 3) by lra.
+  rewrite Rpower_mult_distr with (x := h) (y := Rpower 19 (/ 3) * / 3) (z := 3) by lra.
   clear H0 H1.
   rewrite <- Rmult_assoc.
   rewrite <- Rmult_inv by lra.
