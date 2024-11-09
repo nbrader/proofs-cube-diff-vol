@@ -1,3 +1,5 @@
+A small project. I'm just playing with Coq.
+
 I'm trying to (mostly) faithfully translate into Coq a theorem from the Bird-Meertens Formalism Wikipedia article about the correctness of Kadane's algorithm at solving the Maximum subarray problem.
 
 In order to view these files with the intended Coq parser, you should install:
